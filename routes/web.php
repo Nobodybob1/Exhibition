@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ExhibitionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,9 @@ Route::get('/login', function() {
 });
 Route::post('/login_user', [UserController::class, 'login']);
 Route::get('/logout', [UserController::class, 'logout']);
+
+Route::get('/exhibitions', [ExhibitionController::class, 'index']);
+
+Route::get('/profile/{id}', [UserController::class, 'show']);
+
+Route::patch('/change_profile_image', [UserController::class, 'profile_image']);

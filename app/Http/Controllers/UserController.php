@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -57,7 +57,9 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::where('id', $id)->get()->first();
+        
+        return view('profile', compact('user'));
     }
 
     /**
@@ -106,5 +108,22 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/')->with('message', 'You are logged out successfully!');
+    }
+
+    public function profile_image(Request $request) {
+        $request->validate([
+            'profile_image' => 'required|image'
+        ]);
+
+        $image = $request->file('profile_image');
+        $imageName = $request->file('profile_image')->getClientOriginalName();
+        
+        $image->move(public_path(). '/images/', $imageName);
+
+        User::whereId(auth()->user()->id)->update([
+            'profile_image' => $imageName
+        ]);
+
+        return back();
     }
 }

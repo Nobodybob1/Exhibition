@@ -48,4 +48,37 @@ footer {
     margin-top: auto; /* Pushes the footer to the bottom of the page. */
 }
 
+.alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 600px;
+    margin: 20px;
+}
+
+.profile-container {
+    text-align: center;
+}
+
+.profile-image {
+    width: 150px; /* Adjust the size as needed */
+    height: 150px; /* Adjust the size as needed */
+    object-fit: cover;
+}
+
+.no-file-text {
+    display: none;
+}
+
+.file-label {
+    background-color: #FFC0CB; /* Set background color (you can change this to match your design) */
+    color: #fff; /* Set text color */
+    padding: 10px 15px; /* Adjust padding as needed */
+    border-radius: 5px; /* Add rounded corners */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+}
+
+
+
+
 /* Add more CSS styles to customize your app's appearance. */

@@ -20,11 +20,11 @@
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="#">Exhibitions</a></li>
+            <li><a href="/exhibitions">Exhibitions</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
             @if (auth()->user())
-                <li><a href="#">Dobrodošli, {{auth()->user()->name}}</a></li>
+                <li><a href="/profile/{{auth()->user()->id}}">Welcome, {{auth()->user()->name}}</a></li>
                 <li><a href="/logout">Logout</a></li>
             @else
                 <li><a href="/login">Login</a></li>
