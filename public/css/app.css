@@ -61,9 +61,19 @@ footer {
 }
 
 .profile-image {
+    position: relative;
     width: 150px; /* Adjust the size as needed */
     height: 150px; /* Adjust the size as needed */
     object-fit: cover;
+}
+
+#profile-image-preview {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    height: 150px;
+    width: 150px;
+    max-width: 100%; /* Ensure it doesn't exceed the parent's width */
 }
 
 .no-file-text {
