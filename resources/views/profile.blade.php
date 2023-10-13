@@ -11,7 +11,7 @@
                 </div>
                 
                 <!-- Image preview -->
-                <img id="profile-image-preview" src="#" alt="Profile Image Preview" style="display: none; position: absolute; max-width: 100%">
+                <img class="image-preview" id="profile-image-preview" src="#" alt="Profile Image Preview" style="display: none; position: absolute; max-width: 100%">
             </div>
         </div>
         <div class="col-md-7">
@@ -24,12 +24,25 @@
 
                 <div class="form-group">
                     <label class="file-label" for="profile_image">Change Profile Image</label>
-                    <input type="file" name="profile_image" id="profile_image" class="form-control-file no-file-text" accept="image/*">
+                    <input type="file" name="profile_image" id="profile_image" class="form-control-file no-file-text image" accept="image/*">
                 </div>                
 
-                <button type="submit" class="btn" style="background-color: #FFC0CB; color:#fff">Update Profile Image</button>
+                <button type="submit" class="btn text-white" style="background-color: #FFC0CB;">Update Profile Image</button>
             </form>
+            <a href="/exhibition_create" class="btn btn-warning text-white mt-3">Create Exhibition Art</a>
         </div>
+    </div>
+    <div class="container text-center">
+        @unless ($user->exhibitions->isEmpty())
+        <div class="row">
+            @foreach ($user->exhibitions as $art)
+                <div class="col-md-4 mt-5">
+                    <img src="{{asset('/images/'. $art->image)}}" alt="Image of art" class="img-fluid">
+                    <h4>{{$art->name}}</h4>
+                </div>
+            @endforeach
+        </div>   
+        @endunless
     </div>
 </div>
 @endsection

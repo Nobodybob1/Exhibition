@@ -33,3 +33,6 @@ Route::get('/exhibitions', [ExhibitionController::class, 'index']);
 Route::get('/profile/{id}', [UserController::class, 'show']);
 
 Route::patch('/change_profile_image', [UserController::class, 'profile_image']);
+
+Route::get('/exhibition_create', [ExhibitionController::class, 'create']);
+Route::post('/exhibition_store', [ExhibitionController::class, 'store']);

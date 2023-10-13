@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">Login</div>
+                    <div class="card-header text-white" style="background-color: #FFC0CB;">Login</div>
                     <div class="card-body">
                         <form method="POST" action="/login_user">
                             @csrf

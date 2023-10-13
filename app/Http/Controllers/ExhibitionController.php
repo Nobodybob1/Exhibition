@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exhibition;
 use Illuminate\Http\Request;
 
 class ExhibitionController extends Controller
@@ -19,7 +20,9 @@ class ExhibitionController extends Controller
      */
     public function create()
     {
-        //
+        $user = auth()->user();
+
+        return view('exhibition_create', compact('user'));
     }
 
     /**
@@ -27,7 +30,22 @@ class ExhibitionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->validate([
+            'name' => 'required',
+            'art_image' => 'required|image'
+        ]);
+
+        $image = $request->file('art_image');
+        $imageName = $request->file('art_image')->getClientOriginalName();
+        
+        $image->move(public_path(). '/images/', $imageName);
+
+        Exhibition::create([
+            'name'=>$input['name'], 
+            'image'=>$imageName, 
+            'user_id'=>auth()->user()->id]);
+
+        return redirect('/profile/'. auth()->user()->id);
     }
 
     /**

@@ -76,6 +76,11 @@ footer {
     max-width: 100%; /* Ensure it doesn't exceed the parent's width */
 }
 
+#art-image-preview {
+    height: 300px;
+    width: 300px;
+}
+
 .no-file-text {
     display: none;
 }
@@ -87,8 +92,5 @@ footer {
     border-radius: 5px; /* Add rounded corners */
     cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
 }
-
-
-
 
 /* Add more CSS styles to customize your app's appearance. */
