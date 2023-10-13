@@ -45,7 +45,7 @@ class ExhibitionController extends Controller
             'image'=>$imageName, 
             'user_id'=>auth()->user()->id]);
 
-        return redirect('/profile/'. auth()->user()->id);
+        return redirect('/profile/'. auth()->user()->id)->with('message', 'Art created successfully!');
     }
 
     /**

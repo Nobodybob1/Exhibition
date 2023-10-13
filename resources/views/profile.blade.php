@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@if(session('message'))
+    <div class="alert alert-success" id="message-alert" style="display: none;">
+        {{ session('message') }}
+    </div>
+@endif
 <div class="container">
     <div class="row">
         <div class="col-md-5">
@@ -16,20 +21,22 @@
         </div>
         <div class="col-md-7">
             <h2>{{$user->name}} ({{$user->role->role_name}})</h2>
+            @if (auth()->user()->id === $user->id)
+                <form method="POST" action="/change_profile_image" enctype="multipart/form-data">
+                    @csrf
+                    @method('PATCH')
 
+                    <div class="form-group">
+                        <label class="file-label" for="profile_image">Change Profile Image</label>
+                        <input type="file" name="profile_image" id="profile_image" class="form-control-file no-file-text image" accept="image/*">
+                    </div>                
+
+                    <button type="submit" class="btn text-white" style="background-color: #FFC0CB;">Update Profile Image</button>
+                </form>
+                <a href="/exhibition_create" class="btn btn-warning text-white mt-3">Create Exhibition Art</a>
+            @endif
             <!-- Edit Profile Form -->
-            <form method="POST" action="/change_profile_image" enctype="multipart/form-data">
-                @csrf
-                @method('PATCH')
-
-                <div class="form-group">
-                    <label class="file-label" for="profile_image">Change Profile Image</label>
-                    <input type="file" name="profile_image" id="profile_image" class="form-control-file no-file-text image" accept="image/*">
-                </div>                
-
-                <button type="submit" class="btn text-white" style="background-color: #FFC0CB;">Update Profile Image</button>
-            </form>
-            <a href="/exhibition_create" class="btn btn-warning text-white mt-3">Create Exhibition Art</a>
+            
         </div>
     </div>
     <div class="container text-center">

@@ -8,11 +8,6 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-    @if(session('message'))
-    <div class="alert alert-success" id="message-alert" style="display: none;">
-        {{ session('message') }}
-    </div>
-@endif
 
     {{-- <header>
         <h1>Welcome to the Exhibition App</h1>
