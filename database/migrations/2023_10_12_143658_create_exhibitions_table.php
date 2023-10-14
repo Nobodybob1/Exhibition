@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('image')->nullable();
-            $table->float('rating')->default(0);
             $table->timestamps();
         });
     }

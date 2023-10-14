@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rating;
 use App\Models\Exhibition;
 use Illuminate\Http\Request;
 
@@ -32,6 +33,7 @@ class ExhibitionController extends Controller
     {
         $input = $request->validate([
             'name' => 'required',
+            'description' => 'required',
             'art_image' => 'required|image'
         ]);
 
@@ -40,10 +42,12 @@ class ExhibitionController extends Controller
         
         $image->move(public_path(). '/images/', $imageName);
 
-        Exhibition::create([
-            'name'=>$input['name'], 
+        $art = Exhibition::create([
+            'name' => $input['name'],
             'image'=>$imageName, 
-            'user_id'=>auth()->user()->id]);
+            'user_id'=>auth()->user()->id,
+            'description' => $input['description'], ]);
+
 
         return redirect('/profile/'. auth()->user()->id)->with('message', 'Art created successfully!');
     }
@@ -53,7 +57,9 @@ class ExhibitionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $art = Exhibition::where('id', $id)->get()->first();
+        
+        return view('exhibition_single', compact('art'));
     }
 
     /**
@@ -78,5 +84,9 @@ class ExhibitionController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function update_rating(Request $request, string $id) {
+        
     }
 }

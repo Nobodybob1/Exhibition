@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Rating;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -14,10 +15,20 @@ class Exhibition extends Model
         'user_id',
         'name',
         'image',
-        'rating'
+        'rating',
+        'description'
     ];
 
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    public function ratings() {
+        return $this->hasMany(Rating::class);
+    }
+
+    public function average_rating() {
+        return $this->ratings->sum('rating') / $this->ratings->count();
+    }
+
 }

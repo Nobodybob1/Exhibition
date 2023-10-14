@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Role;
+use App\Models\Rating;
 use App\Models\Exhibition;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -52,5 +53,9 @@ class User extends Authenticatable
 
     public function exhibitions() {
         return $this->hasMany(Exhibition::class);
+    }
+
+    public function ratings() {
+        return $this->hasMany(Rating::class);
     }
 }

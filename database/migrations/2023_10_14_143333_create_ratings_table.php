@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('profile_image')->default('blank_profile_image.png');
+        Schema::create('ratings', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('exhibition_id');
+            $table->unsignedBigInteger('user_id');
+            $table->integer('rating');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            Schema::dropIfExists('users');
-        });
+        Schema::dropIfExists('ratings');
     }
 };

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\ExhibitionController;
 
 /*
@@ -29,6 +30,7 @@ Route::post('/login_user', [UserController::class, 'login']);
 Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/exhibitions', [ExhibitionController::class, 'index']);
+Route::get('/exhibition_single/{id}', [ExhibitionController::class, 'show']);
 
 Route::get('/profile/{id}', [UserController::class, 'show'])->middleware('auth');
 
@@ -36,3 +38,5 @@ Route::patch('/change_profile_image', [UserController::class, 'profile_image']);
 
 Route::get('/exhibition_create', [ExhibitionController::class, 'create'])->middleware('auth');
 Route::post('/exhibition_store', [ExhibitionController::class, 'store']);
+
+Route::post('/rate_art/{id}', [RatingController::class, 'store']);

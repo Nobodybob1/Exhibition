@@ -33,7 +33,11 @@
 
                     <button type="submit" class="btn text-white" style="background-color: #FFC0CB;">Update Profile Image</button>
                 </form>
-                <a href="/exhibition_create" class="btn btn-warning text-white mt-3">Create Exhibition Art</a>
+                @if (auth()->user()->role->role_name == 'artist')
+                    <a href="/exhibition_create" class="btn btn-warning text-white mt-3">Create Exhibition Art</a>
+                @else
+                    
+                @endif
             @endif
             <!-- Edit Profile Form -->
             
@@ -45,7 +49,7 @@
             @foreach ($user->exhibitions as $art)
                 <div class="col-md-4 mt-5">
                     <img src="{{asset('/images/'. $art->image)}}" alt="Image of art" class="img-fluid">
-                    <h4>{{$art->name}}</h4>
+                    <a href="/exhibition_single/{{$art->id}}"><h4>{{$art->name}}</h4></a>
                 </div>
             @endforeach
         </div>   
