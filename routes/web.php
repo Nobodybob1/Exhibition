@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ExhibitionController;
 
 /*
@@ -44,3 +45,5 @@ Route::patch('/update_rate_art/{id}', [RatingController::class, 'update']);
 
 Route::get('/art_update/{id}', [ExhibitionController::class, 'edit']);
 Route::patch('/art_update/{id}', [ExhibitionController::class, 'update']);
+
+Route::post('/art/{id}/comment', [CommentController::class, 'store']);

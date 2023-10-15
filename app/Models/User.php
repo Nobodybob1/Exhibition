@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Role;
 use App\Models\Rating;
+use App\Models\Comment;
 use App\Models\Exhibition;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -57,5 +58,9 @@ class User extends Authenticatable
 
     public function ratings() {
         return $this->hasMany(Rating::class);
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
     }
 }

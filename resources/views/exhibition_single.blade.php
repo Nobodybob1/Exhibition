@@ -7,7 +7,7 @@
             <hr>
         </div>
         <div class="image">
-            <img src="{{ asset('images/'. $art->image) }}" alt="Image">
+            <img src="{{ asset('images/'. $art->image) }}" alt="Image" style="max-widht: 300px; max-height: 300px">
             <hr>
         </div>
         <div class="description">
@@ -34,6 +34,7 @@
                     <form action="/update_rate_art/{{ $art->id }}" method="post">
                         @csrf
                         @method("patch")
+
                         <label for="rating">You already Rated this. Rate again?</label>
                         <input type="number" name="rating" min="1" max="5" value="{{ auth()->user()->ratings()->where('exhibition_id', $art->id)->get()->first()->rating }}">
                         <button type="submit" class="m-1">Submit Rating</button>
@@ -43,15 +44,48 @@
                     <div class="form-control col-md-8">
                         <form action="/rate_art/{{$art->id}}" method="post">
                             @csrf
-                        <label for="rating">Rate this art 1 to 5:</label>
-                        <input type="number" name="rating" min="1" max="5">
-                        <button type="submit" class="m-1">Submit Rating</button>
-                    </form>
-                @endif
-            </div>
-        </div>
+
+                            <label for="rating">Rate this art 1 to 5:</label>
+                            <input type="number" name="rating" min="1" max="5">
+                            <button type="submit" class="m-1">Submit Rating</button>
+                        </form>
+                    </div>
+            @endif
+                
+    </div>
             @else
             <p>Login to rate</p>
             @endif
+    <hr>
+    <div class="comment-section">
+        <h4 class="text-center">Comment Section</h4>
+        @auth
+            <form method="POST" action="/art/{{ $art->id }}/comment">
+            @csrf
+            
+            <div class="form-group">
+                <label for="comment">Add a Comment:</label>
+                <textarea name="comment" class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning text-white">Comment!</button>
+            </form>
+        @else
+            <p>Please <a href="{{ route('login') }}">log in</a> to leave a comment.</p>
+        @endauth
+        @unless ($art->comments->isEmpty())
+            @foreach ($art->comments()->latest()->get() as $comment)
+            <div class="row mt-5 border p-3">
+                <div class="col-md-2">
+                    <img src="{{ asset('/images/'. $comment->user->profile_image) }}" alt="Profile Image" style="max-width:100px; max-height:100px;">
+                </div>
+                <div class="col-md-2">
+                    <p><strong><a href="/profile/{{ $comment->user->id }}" class="text-dark">{{ $comment->user->name }}</a></strong></p>
+                </div>
+                <div class="col-md-8 text-left">
+                    {{ $comment->comment }}
+                </div>
+            </div>
+            @endforeach
+        @endunless
     </div>
 @endsection

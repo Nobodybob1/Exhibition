@@ -27,6 +27,10 @@ class Exhibition extends Model
         return $this->hasMany(Rating::class);
     }
 
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
     public function average_rating() {
         return $this->ratings->sum('rating') / $this->ratings->count();
     }
