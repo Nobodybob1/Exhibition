@@ -49,7 +49,7 @@
             @foreach ($user->exhibitions as $art)
                 <div class="col-md-4 mt-5">
                     <img src="{{asset('/images/'. $art->image)}}" alt="Image of art" class="img-fluid">
-                    <a href="/exhibition_single/{{$art->id}}"><h4>{{$art->name}}</h4></a>
+                    <a href="/exhibition_single/{{$art->id}}" class="text-dark"><h4>{{$art->name}}</h4></a>
                 </div>
             @endforeach
         </div>   

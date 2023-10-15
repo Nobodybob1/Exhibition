@@ -30,7 +30,7 @@ Route::post('/login_user', [UserController::class, 'login']);
 Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/exhibitions', [ExhibitionController::class, 'index']);
-Route::get('/exhibition_single/{id}', [ExhibitionController::class, 'show']);
+Route::get('/exhibition_single/{id}', [ExhibitionController::class, 'show'])->middleware('auth');
 
 Route::get('/profile/{id}', [UserController::class, 'show'])->middleware('auth');
 
@@ -40,3 +40,7 @@ Route::get('/exhibition_create', [ExhibitionController::class, 'create'])->middl
 Route::post('/exhibition_store', [ExhibitionController::class, 'store']);
 
 Route::post('/rate_art/{id}', [RatingController::class, 'store']);
+Route::patch('/update_rate_art/{id}', [RatingController::class, 'update']);
+
+Route::get('/art_update/{id}', [ExhibitionController::class, 'edit']);
+Route::patch('/art_update/{id}', [ExhibitionController::class, 'update']);

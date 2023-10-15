@@ -21,4 +21,12 @@ class RatingController extends Controller
 
         return back();
     }
+
+    public function update(Request $request, string $id) {
+        Auth::user()->ratings()->where('exhibition_id', $id)->update([
+            'rating' => $request['rating']
+        ]);
+
+        return redirect()->back();
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Rating;
 use App\Models\Exhibition;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExhibitionController extends Controller
 {
@@ -67,7 +68,14 @@ class ExhibitionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        if (Auth::user()->exhibitions()->whereId($id)->exists()) {
+            $art = Exhibition::where('id', $id)->get()->first();
+            return view('exhibition_update', compact('art'));
+        } else {
+            return redirect()->back();
+        }
+
+        
     }
 
     /**
@@ -75,7 +83,16 @@ class ExhibitionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        Exhibition::whereId($id)->update([
+            'name' => $request['name'],
+            'description' => $request['description']
+        ]);
+
+        return redirect('/profile/'. Auth::user()->id);
     }
 
     /**
