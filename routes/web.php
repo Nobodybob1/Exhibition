@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ExhibitionController;
+use App\Http\Controllers\UserFavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,5 @@ Route::get('/art_update/{id}', [ExhibitionController::class, 'edit']);
 Route::patch('/art_update/{id}', [ExhibitionController::class, 'update']);
 
 Route::post('/art/{id}/comment', [CommentController::class, 'store']);
+
+Route::post('/add_favorite/{id}', [UserFavoriteController::class, 'store']);

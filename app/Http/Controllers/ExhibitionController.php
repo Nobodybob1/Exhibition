@@ -14,7 +14,9 @@ class ExhibitionController extends Controller
      */
     public function index()
     {
-        return view('exhibitions');
+        $arts = Exhibition::latest()->get();
+
+        return view('exhibitions', compact('arts'));
     }
 
     /**

@@ -1,9 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('mesage'))
+        <div class="alert alert-success" id="message-alert" style="display: none;">
+            {{ session('message') }}
+        </div> 
+    @endif
     <div class="container text-center">
         <div class="header">
+            @if (auth()->user()->favorites()->where('exhibition_id', $art->id)->exists())
+                <p>Already in favorites.</p>
+            @else
+            <form action="/add_favorite/{{ $art->id }}" method="post">
+                @csrf
+                
+                <button class="btn btn-warning text-white mb-3" type="submit">Add to favorites?</button>
+            </form>
+            @endif
             <h2>{{ $art->name }}</h2>
+            <h5>By {{ $art->user->name }}</h5>
             <hr>
         </div>
         <div class="image">

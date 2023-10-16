@@ -55,5 +55,18 @@
         </div>   
         @endunless
     </div>
+    <div class="container text-center">
+        <h2>Favorites:</h2>
+        @unless ($user->favorites->isEmpty())
+            <div class="row">
+                @foreach ($user->favorites as $favorite)
+                    <div class="col-md-4 mt-5">
+                        <img src="{{asset('/images/'. $favorite->art->image)}}" alt="Image of art" class="img-fluid">
+                        <a href="/exhibition_single/{{$favorite->art->id}}" class="text-dark"><h4>{{$favorite->art->name}}</h4></a>
+                    </div>
+                @endforeach
+            </div>
+        @endunless
+    </div>
 </div>
 @endsection

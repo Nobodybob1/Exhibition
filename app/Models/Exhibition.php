@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Rating;
+use App\Models\UserFavorite;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -33,6 +34,10 @@ class Exhibition extends Model
 
     public function average_rating() {
         return $this->ratings->sum('rating') / $this->ratings->count();
+    }
+
+    public function favorited_by() {
+        return $this->hasMany(UserFavorite::class);
     }
 
 }

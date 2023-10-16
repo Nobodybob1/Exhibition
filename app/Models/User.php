@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\Rating;
 use App\Models\Comment;
 use App\Models\Exhibition;
+use App\Models\UserFavorite;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -62,5 +63,9 @@ class User extends Authenticatable
 
     public function comments() {
         return $this->hasMany(Comment::class);
+    }
+
+    public function favorites() {
+        return $this->hasMany(UserFavorite::class);
     }
 }
