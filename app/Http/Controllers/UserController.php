@@ -58,6 +58,18 @@ class UserController extends Controller
     public function show(string $id)
     {
         $user = User::where('id', $id)->get()->first();
+
+        // foreach ($user->favorites as $favorite) {
+        //     $imageUrl = asset('/images/'. $favorite->art->image);
+
+        //     $encodedImageUrl = rawurldecode($imageUrl);
+        // }
+
+        // $shareComponent = \Share::page(
+        //     $encodedImageUrl,
+        //     'Your share text comes here',
+        // )
+        // ->facebook();
         
         return view('profile', compact('user'));
     }

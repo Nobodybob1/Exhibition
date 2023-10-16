@@ -40,4 +40,18 @@ class Exhibition extends Model
         return $this->hasMany(UserFavorite::class);
     }
 
+    public function getFacebookShareLink()
+    {
+        // Generate the URL to your image, assuming it's stored in the 'images' directory
+        $imageUrl = asset('/images/' . $this->image);
+
+        // URL encode the image URL
+        $encodedImageUrl = rawurlencode($imageUrl);
+
+        // Create the Facebook share link with the image URL
+        $facebookShareLink = "https://www.facebook.com/sharer/sharer.php?u={$encodedImageUrl}";
+
+        return $facebookShareLink;
+    }
+
 }

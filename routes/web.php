@@ -50,3 +50,5 @@ Route::patch('/art_update/{id}', [ExhibitionController::class, 'update']);
 Route::post('/art/{id}/comment', [CommentController::class, 'store']);
 
 Route::post('/add_favorite/{id}', [UserFavoriteController::class, 'store']);
+
+Route::get('/social-media-share', [SocialShareButtonsController::class,'ShareWidget']);
