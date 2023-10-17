@@ -17,7 +17,8 @@ class Exhibition extends Model
         'name',
         'image',
         'rating',
-        'description'
+        'description',
+        'views'
     ];
 
     public function user() {

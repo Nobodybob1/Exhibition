@@ -10,6 +10,12 @@
         <div class="header">
             @if (auth()->user()->favorites()->where('exhibition_id', $art->id)->exists())
                 <p>Already in favorites.</p>
+            @elseif(auth()->user()->exhibitions()->whereId($art->id)->exists())
+            <div class="informations">
+                <p><h3>Your art</h3></p>
+                <p>Number of views: {{ $art->views }}</p>
+                <p>Number of ratings: {{ $art->ratings()->count() }}</p>
+            </div>
             @else
             <form action="/add_favorite/{{ $art->id }}" method="post">
                 @csrf

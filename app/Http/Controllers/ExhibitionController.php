@@ -6,6 +6,7 @@ use App\Models\Rating;
 use App\Models\Exhibition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ExhibitionController extends Controller
 {
@@ -61,7 +62,15 @@ class ExhibitionController extends Controller
     public function show(string $id)
     {
         $art = Exhibition::where('id', $id)->get()->first();
-        
+
+        if (Auth::user()->id !== $art->user->id) {
+            $viewCounter = Session::get('viewed_pages', []);
+            if (!in_array($id, $viewCounter)) {
+                $art->increment('views');
+                Session::push('viewed_pages', $id);
+            }
+        }
+
         return view('exhibition_single', compact('art'));
     }
 
