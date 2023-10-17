@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ExhibitionController;
@@ -20,6 +21,18 @@ use App\Http\Controllers\UserFavoriteController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::middleware('admin')->group(function () {
+    Route::get('/admin', function() {
+        return view('admin');
+    });
+
+    Route::get('/admin_artists', [AdminController::class, 'show']);
+    Route::patch('/block_artist/{id}', [AdmimController::class, 'update']);
+
+    Route::get('/add_artist', [AdminController::class, 'create']);
+    Route::post('/create_artist', [AdminController::class, 'store']);
 });
 
 Route::get('/create_user', [UserController::class, 'create']);

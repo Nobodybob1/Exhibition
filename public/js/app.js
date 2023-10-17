@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#message-alert').fadeIn('slow');
+    $('.message-alert').fadeIn('slow');
     setTimeout(function() {
         $('#message-alert').fadeOut('slow');
     }, 1000); // 5 seconds

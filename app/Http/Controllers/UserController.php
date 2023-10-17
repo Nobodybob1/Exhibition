@@ -106,7 +106,11 @@ class UserController extends Controller
 
         if(auth()->attempt($input)) {
             $request->session()->regenerate();
-            return redirect('/')->with('message', 'You are logged in!');;
+            if (auth()->user()->role->role_name == 'admin') {
+                return redirect('/admin')->with('message', 'You are logged in!');
+            } else {
+                return redirect('/')->with('message', 'You are logged in!');
+            }
         } else {
             return back()->with('error', 'Email or password is not correct!');
         }
