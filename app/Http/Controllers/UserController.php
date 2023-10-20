@@ -104,6 +104,10 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
+        if (User::where('email', $input['email'])->get()->first()->is_blocked) {
+            return back()->with('error', 'You are blocked!');
+        }
+
         if(auth()->attempt($input)) {
             $request->session()->regenerate();
             if (auth()->user()->role->role_name == 'admin') {

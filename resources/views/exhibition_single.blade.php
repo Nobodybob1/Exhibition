@@ -7,6 +7,14 @@
         </div> 
     @endif
     <div class="container text-center">
+        @if (auth()->user()->role_id == 3)
+            <form action="/delete_art/{{ $art->id }}" method="post">
+                @csrf
+                @method("delete")
+
+                <button class="btn btn-danger mb-5" type="submit">Delete!</button>
+            </form>
+        @endif
         <div class="header">
             @if (auth()->user()->favorites()->where('exhibition_id', $art->id)->exists())
                 <p>Already in favorites.</p>
@@ -105,6 +113,14 @@
                 <div class="col-md-8 text-left">
                     {{ $comment->comment }}
                 </div>
+                @if (auth()->user()->role_id == 3)
+                    <form action="/delete_comment/{{ $comment->id }}" method="post">
+                        @csrf
+                        @method("delete")
+        
+                        <button class="btn btn-danger mt-5" type="submit">Delete!</button>
+                    </form>
+                @endif
             </div>
             @endforeach
         @endunless

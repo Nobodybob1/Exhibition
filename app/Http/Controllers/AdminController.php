@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Comment;
+use App\Models\Exhibition;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -68,7 +70,11 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        dd($id);
+        User::whereId($id)->update([
+            'is_blocked' => 1
+        ]);
+
+        return redirect()->back()->with('message', 'User has been blocked');
     }
 
     /**
@@ -76,6 +82,20 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Exhibition::whereId($id)->delete();
+
+        return redirect('/admin_arts');
+    }
+
+    public function arts() {
+        $arts = Exhibition::all();
+
+        return view('admin_arts', compact('arts'));
+    }
+
+    public function delete_comment(string $id) {
+        Comment::whereId($id)->delete();
+
+        return back();
     }
 }

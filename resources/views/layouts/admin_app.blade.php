@@ -16,7 +16,7 @@
         <ul>
             <li><a href="/admin">Home</a></li>
             <li><a href="/admin_artists">Artists</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="/admin_arts">Arts</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>

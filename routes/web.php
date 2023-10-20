@@ -27,12 +27,16 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin', function() {
         return view('admin');
     });
+        Route::get('/admin_artists', [AdminController::class, 'show']);
+        Route::patch('/block_artist/{id}', [AdminController::class, 'update']);
 
-    Route::get('/admin_artists', [AdminController::class, 'show']);
-    Route::patch('/block_artist/{id}', [AdmimController::class, 'update']);
+        Route::get('/add_artist', [AdminController::class, 'create']);
+        Route::post('/create_artist', [AdminController::class, 'store']);
 
-    Route::get('/add_artist', [AdminController::class, 'create']);
-    Route::post('/create_artist', [AdminController::class, 'store']);
+        Route::get('/admin_arts', [AdminController::class, 'arts']);
+
+        Route::delete('/delete_art/{id}', [AdminController::class, 'destroy']);
+        Route::delete('/delete_comment/{id}', [AdminController::class, 'delete_comment']);
 });
 
 Route::get('/create_user', [UserController::class, 'create']);
