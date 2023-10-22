@@ -69,3 +69,5 @@ Route::post('/art/{id}/comment', [CommentController::class, 'store']);
 Route::post('/add_favorite/{id}', [UserFavoriteController::class, 'store']);
 
 Route::get('/social-media-share', [SocialShareButtonsController::class,'ShareWidget']);
+
+Route::get('/art/search', [ExhibitionController::class, 'index']);

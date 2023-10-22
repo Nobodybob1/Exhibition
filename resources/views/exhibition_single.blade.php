@@ -24,6 +24,9 @@
                 <p>Number of views: {{ $art->views }}</p>
                 <p>Number of ratings: {{ $art->ratings()->count() }}</p>
             </div>
+            @elseif(auth()->user()->role_id == 3)
+                <p>Number of views: {{ $art->views }}</p>
+                <p>Number of ratings: {{ $art->ratings()->count() }}</p>
             @else
             <form action="/add_favorite/{{ $art->id }}" method="post">
                 @csrf

@@ -13,11 +13,16 @@ class ExhibitionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $arts = Exhibition::latest()->get();
+        $search = collect();
 
-        return view('exhibitions', compact('arts'));
+        if ($request['search']) {
+            $search = Exhibition::where('name', 'like', '%'. $request['search']. '%')->get();
+        }
+
+        return view('exhibitions', compact('arts', 'search'));
     }
 
     /**
@@ -114,7 +119,9 @@ class ExhibitionController extends Controller
         //
     }
 
-    public function update_rating(Request $request, string $id) {
+    // public function search(Request $request) {
+    //     $search = Exhibition::where('name', 'like', '%'. $request['search']. '%')->get();
         
-    }
+    //     return view('exhibitions', compact('search'));
+    // }
 }
