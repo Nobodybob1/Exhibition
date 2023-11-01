@@ -9,3 +9,18 @@
 
 ## Art Exhibition
 <p>An application that allows you to view and rate works of art and add new ones.</p>
+
+## Starting the Application
+
+<ul>
+    <li>Pull project</li>
+    <li>Change .env.example file to .env</li>
+    <li>In command line type composer install</li>
+    <li>In XAMPP start Apache and MySQL</li>
+    <li>In command line enter next sequence of commands:</li>
+    <ul>
+        <li>php artisan migrate:fresh</li>
+        <li>php artisan db:seed</li>
+        <li>php artisan serve</li>
+    </ul>
+</ul>
