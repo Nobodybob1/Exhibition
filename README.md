@@ -15,6 +15,7 @@
 <ul>
     <li>Pull project</li>
     <li>Change .env.example file to .env</li>
+    <li>Set up database</li>
     <li>In command line type composer install</li>
     <li>In XAMPP start Apache and MySQL</li>
     <li>In command line enter next sequence of commands:</li>
